@@ -4,7 +4,7 @@ alias python='python3'
 alias pip='pip3'
 
 
-sudo apt-get install tmux
+sudo apt-get install tmux tree
 sudo apt-get install  htop
 
 mkdir installs
@@ -58,17 +58,25 @@ sudo apt-get -y install cuda -q
 
 
 # https://stackoverflow.com/questions/43022843/nvidia-nvml-driver-library-version-mismatch
-sudo apt-get --purge remove "*nvidia*"
+sudo apt-get --purge remove "*nvidia*" -q
 dpkg -l | grep -i nvidia
 apt-get update
 export LD_PRELOAD=/usr/lib64-nvidia/libnvidia-ml.so
 sudo apt install nvidia-driver-418 -q
+export LD_PRELOAD=/usr/lib64-nvidia/libnvidia-ml.so
 
 
 
+pip install ipykernel
 
-
+pip install jupyter notebook
  
+# running by ssh`
+# tmux
+
+# jupyter notebook --ip 0.0.0.0 --NotebookApp.token='' --no-browser
+
+# ssh -R myjupyter-lab:80:localhost:8888 serveo.net 
  
 
 
