@@ -54,7 +54,7 @@ wget http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installer
 sudo dpkg -i cuda-repo-ubuntu1804-10-1-local-10.1.243-418.87.00_1.0-1_amd64.deb
 sudo apt-key add /var/cuda-repo-10-1-local-10.1.243-418.87.00/7fa2af80.pub
 sudo apt-get update
-sudo apt-get -y install cuda
+sudo apt-get -y install cuda -q
 
 
 # https://stackoverflow.com/questions/43022843/nvidia-nvml-driver-library-version-mismatch
@@ -62,7 +62,7 @@ sudo apt-get --purge remove "*nvidia*"
 dpkg -l | grep -i nvidia
 apt-get update
 export LD_PRELOAD=/usr/lib64-nvidia/libnvidia-ml.so
-sudo apt install nvidia-driver-418
+sudo apt install nvidia-driver-418 -q
 
 
 
