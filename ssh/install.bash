@@ -1,15 +1,15 @@
 #!/bin/bash
 
+alias python='python3'
+alias pip='pip3'
+
 
 sudo apt-get install tmux
 sudo apt-get install  htop
 
-
 mkdir installs
-
 cd installs
-
-
+# installing nvtop for nvidia gpu monitoring 
 git clone https://github.com/Syllo/nvtop.git
 mkdir -p nvtop/build && cd nvtop/build
 cmake ..
@@ -18,27 +18,12 @@ cmake ..
 # try the following command instead, otherwise skip to the build with make.
 #cmake .. -DNVML_RETRIEVE_HEADER_ONLINE=True
 
-make
+make    
 make install # You may need sufficient permission for that (root)
 
 cd ..
 
 export LD_PRELOAD=/usr/lib64-nvidia/libnvidia-ml.so
-
-# installing tensorflow-gpu 2.0
-
-wget https://developer.nvidia.com/compute/cuda/10.0/Prod/local_installers/cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64 -O cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64.deb
-
-dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64.deb
-
-apt-key add /var/cuda-repo-10-0-local-10.0.130-410.48/7fa2af80.pub
-
-apt-get update
-
-apt-get install cuda
-
-pip install tf-nightly-gpu-2.0-preview
-
 
 
 #+-----------------------------------------------------------------------------+
@@ -59,17 +44,35 @@ pip install tf-nightly-gpu-2.0-preview
 #+-----------------------------------------------------------------------------+
 
 
+# updating repos for ubuntu 
+apt-get update
 
+# installing nvidia drivers
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
+sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-ubuntu1804-10-1-local-10.1.243-418.87.00_1.0-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu1804-10-1-local-10.1.243-418.87.00_1.0-1_amd64.deb
+sudo apt-key add /var/cuda-repo-10-1-local-10.1.243-418.87.00/7fa2af80.pub
+sudo apt-get update
+sudo apt-get -y install cuda
+
+
+# https://stackoverflow.com/questions/43022843/nvidia-nvml-driver-library-version-mismatch
+sudo apt-get --purge remove "*nvidia*"
 dpkg -l | grep -i nvidia
+apt-get update
+export LD_PRELOAD=/usr/lib64-nvidia/libnvidia-ml.so
+sudo apt install nvidia-driver-418
 
-apt-get remove --purge nvidia-driver-430
 
-apt-get remove --purge nvidia*
-apt-get remove --purge libnvidia*
-apt-get update 
 
-apt-get install libnvidia-common-418 libnvidia-decode-418  libnvidia-encode-418  libnvidia-cfg1-418
-apt-get install libnvidia-common-418  libnvidia-fbc1-418   libnvidia-gl-418  libnvidia-ifr1-418
-apt-get install nvidia-kernel-common-418  nvidia-kernel-source-418 xserver-xorg-video-nvidia-418 
-apt-get install nvidia-driver-418 
+
+
+ 
+ 
+
+
+
+
+
 
