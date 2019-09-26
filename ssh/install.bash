@@ -4,7 +4,7 @@ alias python='python3'
 alias pip='pip3'
 
 
-sudo apt-get install tmux tree
+sudo apt-get install tmux tree net-tools -y 
 sudo apt-get install  htop
 
 mkdir installs
