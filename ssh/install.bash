@@ -4,8 +4,8 @@ alias python='python3'
 alias pip='pip3'
 
 
-sudo apt-get install tmux tree net-tools -y 
-sudo apt-get install  htop
+sudo apt-get install tmux tree net-tools -y  -qq
+sudo apt-get install  htop -qq
 
 mkdir installs
 cd installs
@@ -53,8 +53,8 @@ sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
 wget http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-ubuntu1804-10-1-local-10.1.243-418.87.00_1.0-1_amd64.deb
 sudo dpkg -i cuda-repo-ubuntu1804-10-1-local-10.1.243-418.87.00_1.0-1_amd64.deb
 sudo apt-key add /var/cuda-repo-10-1-local-10.1.243-418.87.00/7fa2af80.pub
-sudo apt-get update
-sudo apt-get -y install cuda -q
+sudo apt-get -qq update
+sudo apt-get -y install cuda 
 
 
 # https://stackoverflow.com/questions/43022843/nvidia-nvml-driver-library-version-mismatch
@@ -70,14 +70,7 @@ export LD_PRELOAD=/usr/lib64-nvidia/libnvidia-ml.so
 pip install ipykernel
 
 pip install jupyter notebook
- 
-# running by ssh`
-# tmux
 
-# jupyter notebook --ip 0.0.0.0 --NotebookApp.token='' --no-browser
-
-# ssh -R myjupyter-lab:80:localhost:8888 serveo.net 
- 
 
 
 
