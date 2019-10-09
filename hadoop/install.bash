@@ -39,19 +39,29 @@ source ~/.bashrc
 cat $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
 
-echo 'export JAVA_HOME=/usr/lib/jvm/java-11-oracle' >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
+echo 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64' >> $HADOOP_HOME/etc/hadoop/hadoop-env.sh
 
 
 
 cat $HADOOP_HOME/etc/hadoop/core-site.xml
-
 cat $HADOOP_HOME/etc/hadoop/core-hdfs.xml
-
 cat $HADOOP_HOME/etc/hadoop/mapred-site.xml
 cat $HADOOP_HOME/etc/hadoop/yarn-site.xml
 
+cp core-site.xml $HADOOP_HOME/etc/hadoop/core-site.xml
+cp core-hdfs.xml $HADOOP_HOME/etc/hadoop/core-hdfs.xml
+cp mapred-site.xml $HADOOP_HOME/etc/hadoop/mapred-site.xml
+cp yarn-site.xml $HADOOP_HOME/etc/hadoop/yarn-site.xml
 
 
+hdfs namenode -format
+### RESTARTING VM !!!!
+
+cd $HADOOP_HOME/sbin/
+
+./start-dfs.sh
+
+./start-yarn.sh
 
 
 
