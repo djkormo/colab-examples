@@ -21,4 +21,4 @@ export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export SPARK_HOME=/content/spark-2.4.4-bin-hadoop2.7
 
 # testing installation 
-python spark-test.py
+python ./spark-test.py
