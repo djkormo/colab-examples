@@ -8,7 +8,7 @@ cd content/
 
 apt-get install openjdk-8-jdk-headless
 
-wget http://apache.crihan.fr/dist/spark/spark-2.4.6/spark-2.4.4-bin-hadoop2.7.tgz -O spark-2.4.6-bin-hadoop2.7.tgz
+wget http://apache.crihan.fr/dist/spark/spark-2.4.6/spark-2.4.6-bin-hadoop2.7.tgz -O spark-2.4.6-bin-hadoop2.7.tgz
 
 tar xf spark-2.4.6-bin-hadoop2.7.tgz
 
